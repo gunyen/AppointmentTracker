@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nguyen.c195.controller.LoginController">
+   <children>
+      <Pane layoutX="165.0" layoutY="159.0" prefHeight="168.0" prefWidth="267.0" style="-fx-background-color: #fff; -fx-border-color: #000;">
+         <children>
+            <GridPane layoutX="34.0" layoutY="26.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="userNameLabel" text="User Name:" />
+                  <Label fx:id="passwordLabel" text="Password:" GridPane.rowIndex="1" />
+                   <TextField fx:id="userNameText" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                   <PasswordField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" layoutX="34.0" layoutY="90.0" prefHeight="38.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="submitLogin" mnemonicParsing="false" onAction="#onSubmit" text="Submit" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="128.0" prefHeight="38.0" prefWidth="267.0">
+               <children>
+                  <Label fx:id="verifyLabel" />
+               </children>
+            </HBox>
+         </children></Pane>
+      <HBox alignment="CENTER_LEFT" layoutX="349.0" layoutY="347.0" prefHeight="38.0" prefWidth="253.0">
+         <children>
+            <Label fx:id="userZoneLabel" prefHeight="18.0" prefWidth="105.0" text="Time Zone:" textAlignment="RIGHT">
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="userZone" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="-13.0" layoutY="347.0" prefHeight="38.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="translateEng" mnemonicParsing="false" onAction="#transEng" text="English">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="translateFr" mnemonicParsing="false" onAction="#transFr" text="French" />
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="91.0" layoutY="47.0" prefHeight="100.0" prefWidth="431.0">
+         <children>
+            <Label fx:id="loginLabel" text="Login">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="60.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

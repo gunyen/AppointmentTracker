@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="416.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nguyen.c195.controller.AppointmentsController">
+    <children>
+        <VBox layoutX="21.0" layoutY="121.0" prefHeight="200.0" prefWidth="907.0">
+            <children>
+                <TableView fx:id="AppointmentTable" prefHeight="200.0" prefWidth="910.0">
+                    <columns>
+                        <TableColumn fx:id="AppID" prefWidth="51.20000076293945" resizable="false" text="AppID" />
+                        <TableColumn fx:id="Title" prefWidth="82.5999984741211" resizable="false" text="Title" />
+                        <TableColumn fx:id="Description" prefWidth="104.19998168945312" resizable="false" text="Description" />
+                        <TableColumn fx:id="Location" prefWidth="89.80001831054688" resizable="false" text="Location" />
+                        <TableColumn fx:id="Contact" prefWidth="90.79998779296875" resizable="false" text="Contact" />
+                        <TableColumn fx:id="Type" prefWidth="107.60006713867188" resizable="false" text="Type" />
+                        <TableColumn fx:id="Start" prefWidth="128.4000244140625" resizable="false" text="Start" />
+                        <TableColumn fx:id="End" prefWidth="126.0" resizable="false" text="End" />
+                        <TableColumn fx:id="CustomerID" prefWidth="74.39996337890625" resizable="false" text="CustomerID" />
+                        <TableColumn fx:id="UserID" prefWidth="46.0" resizable="false" text="UserID" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+        <HBox alignment="CENTER" layoutX="259.0" layoutY="21.0" prefHeight="80.0" prefWidth="430.0">
+            <children>
+                <Label text="Appointments">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="60.0" />
+               </font></Label>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="21.0" layoutY="344.0" prefHeight="47.0" prefWidth="324.0" spacing="15.0">
+            <children>
+                <Label text="Appointments this: " />
+                <RadioButton mnemonicParsing="false" text="Week">
+               <toggleGroup>
+                  <ToggleGroup fx:id="dateFilter" />
+               </toggleGroup></RadioButton>
+                <RadioButton mnemonicParsing="false" text="Month" toggleGroup="$dateFilter" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="537.0" layoutY="344.0" prefHeight="47.0" prefWidth="390.0" spacing="15.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#appCreateButt" text="New" />
+                <Button mnemonicParsing="false" onAction="#appEditButt" text="Edit" />
+                <Button fx:id="customersButton" mnemonicParsing="false" onAction="#customerButton" text="Customers" />
+            <Button mnemonicParsing="false" onAction="#logoutButt" text="Log Out" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
