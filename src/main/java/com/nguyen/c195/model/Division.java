@@ -5,6 +5,9 @@ Creation Date: 5/31/2023
 Creation Time: 7:02 PM
 */
 
+/**
+ * Models the creation of Division objects
+ */
 public class Division {
     private int divisionId;
     private String division;
@@ -15,28 +18,36 @@ public class Division {
     }
 
     /**
-     * @return
+     * @return the division
+     */
+    @Override
+    public String toString() {
+        return (division);
+    }
+
+    /**
+     * @return the divisionId
      */
     public int getDivisionId() {
         return divisionId;
     }
 
     /**
-     * @param divisionId
+     * @param divisionId the divisionId to set
      */
     public void setDivisionId(int divisionId) {
         this.divisionId = divisionId;
     }
 
     /**
-     * @return
+     * @return the division
      */
     public String getDivision() {
         return division;
     }
 
     /**
-     * @param division
+     * @param division the division to set
      */
     public void setDivision(String division) {
         this.division = division;

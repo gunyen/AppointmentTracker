@@ -5,6 +5,9 @@ Creation Date: 5/27/2023
 Creation Time: 4:45 PM
 */
 
+/**
+ * Models the creation of User objects
+ */
 public class User {
     private int userID;
     private String userName;

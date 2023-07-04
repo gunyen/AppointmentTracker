@@ -8,6 +8,9 @@ Creation Time: 6:16 PM
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Tunnel to connect database
+ */
 public abstract class DBConnection {
 
     private static final String protocol = "jdbc";
@@ -20,22 +23,28 @@ public abstract class DBConnection {
     private static final String password = "Passw0rd!";
     public static Connection connection;
 
-    public static void openConnection(){
-        try{
+    /**
+     * <p>Opens a connection to the database</p>
+     */
+    public static void openConnection() {
+        try {
             Class.forName(driver);
             connection = DriverManager.getConnection(jdbcUrl, userName, password);
             System.out.println("Connection Successful");
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public static void closeConnection(){
-        try{
+    /**
+     * <p>Closes any open connections to the database</p>
+     */
+    public static void closeConnection() {
+        try {
             connection.close();
             System.out.println("Connection Closed");
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
 
         }

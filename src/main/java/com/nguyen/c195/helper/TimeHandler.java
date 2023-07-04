@@ -1,0 +1,126 @@
+package com.nguyen.c195.helper;/*
+C195
+Created by: John Nguyen
+Creation Date: 6/15/2023
+Creation Time: 5:42 PM
+*/
+
+import com.nguyen.c195.DAO.DBConnection;
+import com.nguyen.c195.model.Appointment;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+
+/**
+ * Holds methods that handle time operations
+ */
+public abstract class TimeHandler {
+
+    /**
+     * <p>Populates the set comboBox with times in increments of 15 inputting translated designated time window from EST to the users machine local time</p>
+     *
+     * @param comboBox the comboBox to set
+     */
+    public static void fillTimeBox(ComboBox<LocalTime> comboBox) {
+        ZonedDateTime zonedDateTimeStart = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
+        ZonedDateTime zonedDateTimeEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
+
+        while (zonedDateTimeStart.toLocalTime().isBefore(zonedDateTimeEnd.toLocalTime().plusSeconds(1))) {
+            comboBox.getItems().add(zonedDateTimeStart.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime());
+            zonedDateTimeStart = zonedDateTimeStart.plusMinutes(15);
+        }
+    }
+
+    /**
+     * <p>Returns a boolean value based on whether the set startTime and/or set endTime is out of bounds of designated time window</p>
+     *
+     * @param startTime the startTime to set
+     * @param endTime the endTime to set
+     * @return boolean value
+     */
+    public static boolean verifyBusinessHours(Timestamp startTime, Timestamp endTime) {
+        ZonedDateTime zonedDateTimeStart = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
+        ZonedDateTime zonedDateTimeEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
+
+        LocalTime start = startTime.toLocalDateTime().toLocalTime();
+        LocalTime end = endTime.toLocalDateTime().toLocalTime();
+        LocalTime startEST = zonedDateTimeStart.withZoneSameInstant(LocalDateTime.now().atZone(ZoneId.systemDefault()).getZone()).toLocalTime();
+        LocalTime endEST = zonedDateTimeEnd.withZoneSameInstant(LocalDateTime.now().atZone(ZoneId.systemDefault()).getZone()).toLocalTime();
+
+        if (start.isBefore(startEST) || start.isAfter(endEST) || end.isBefore(startEST) || end.isAfter(endEST)) {
+            return false;
+        } else if (startTime.toLocalDateTime().getDayOfWeek().equals(DayOfWeek.SATURDAY) || startTime.toLocalDateTime().getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * <p>Returns a boolean value based on set startTime and/or endTime if an appointment object already occupies a designate time window</p>
+     *
+     * @param startTime the startTime to set
+     * @param endTime the endTime to set
+     * @return
+     * @throws SQLException
+     */
+    public static boolean appointmentOverlapCheck(Timestamp startTime, Timestamp endTime) throws SQLException {
+        String sql = "SELECT * FROM appointments";
+        PreparedStatement ps = DBConnection.connection.prepareStatement(sql);
+        ps.executeQuery();
+        ResultSet rs = ps.getResultSet();
+        while (rs.next()) {
+            Timestamp start = rs.getTimestamp("Start");
+            Timestamp end = rs.getTimestamp("End");
+            if (startTime.after(start) && startTime.before(end)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Appointment Overlap");
+                alert.setContentText("You have another appointment during this time. Another appointment can't start in the middle of it.");
+                alert.showAndWait();
+                return false;
+            } else if (endTime.after(start) && endTime.before(end)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Appointment Overlap");
+                alert.setContentText("You have another appointment during this time. Appointments cannot in the middle of another appointment.");
+                alert.showAndWait();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * <p>Returns boolean value depending on an Appointment object if the object's start time is within a 15 minute time window from users machine current time</p>
+     * <p>
+     *     The return value of true alerts the user that there is an Appointment object within the 15 minute time window. The return value of false alerts that there isn't an Appointment object within the 15 minutre time window.
+     * </p>
+     *
+     * @param allAppointments the allAppointments to set
+     * @return
+     */
+    public static boolean meetingAlert(ObservableList<Appointment> allAppointments) {
+        for (int i = 0; i < allAppointments.size(); i++) {
+            LocalTime start = allAppointments.get(i).getStartDateTime().toLocalDateTime().toLocalTime();
+            LocalTime current = LocalTime.now();
+            long gap = ChronoUnit.MINUTES.between(current, start);
+            if (gap <= 15 && start.isAfter(LocalTime.now())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Upcoming Appointment");
+                alert.setContentText("You have an appointment in " + gap + " minute(s)");
+                alert.showAndWait();
+                return true;
+            }
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Upcoming Appointment");
+        alert.setContentText("You have no upcoming appointments");
+        alert.showAndWait();
+        return false;
+    }
+}
