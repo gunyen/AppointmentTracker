@@ -1,9 +1,4 @@
-package com.nguyen.c195.DAO;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/13/2023
-Creation Time: 6:05 PM
-*/
+package com.nguyen.c195.DAO;
 
 import com.nguyen.c195.model.Contacts;
 import javafx.collections.FXCollections;

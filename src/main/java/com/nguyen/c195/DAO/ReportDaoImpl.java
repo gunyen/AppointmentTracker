@@ -1,9 +1,4 @@
-package com.nguyen.c195.DAO;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/29/2023
-Creation Time: 3:15 PM
-*/
+package com.nguyen.c195.DAO;
 
 import com.nguyen.c195.model.Contacts;
 import com.nguyen.c195.model.Report;

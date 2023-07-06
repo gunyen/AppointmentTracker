@@ -1,9 +1,4 @@
-package com.nguyen.c195.model;/*
-C195
-Created by: John Nguyen
-Creation Date: 5/31/2023
-Creation Time: 7:02 PM
-*/
+package com.nguyen.c195.model;
 
 /**
  * Models the creation of Country objects

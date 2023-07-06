@@ -1,9 +1,4 @@
-package com.nguyen.c195.controller;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/12/2023
-Creation Time: 12:15 PM
-*/
+package com.nguyen.c195.controller;
 
 import com.nguyen.c195.DAO.CountryDaoImpl;
 import com.nguyen.c195.DAO.CustomerDaoImpl;

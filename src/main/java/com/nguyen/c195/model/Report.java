@@ -1,9 +1,4 @@
-package com.nguyen.c195.model;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/29/2023
-Creation Time: 11:18 PM
-*/
+package com.nguyen.c195.model;
 
 import java.sql.Timestamp;
 import java.time.Month;

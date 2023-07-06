@@ -1,9 +1,4 @@
-package com.nguyen.c195.helper;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/6/2023
-Creation Time: 8:53 PM
-*/
+package com.nguyen.c195.helper;
 
 import com.nguyen.c195.DAO.DBConnection;
 import com.nguyen.c195.model.User;

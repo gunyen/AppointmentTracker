@@ -1,9 +1,4 @@
-package com.nguyen.c195.controller;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/23/2023
-Creation Time: 5:50 PM
-*/
+package com.nguyen.c195.controller;
 
 import com.nguyen.c195.DAO.ContactDAOImpl;
 import com.nguyen.c195.DAO.DBConnection;

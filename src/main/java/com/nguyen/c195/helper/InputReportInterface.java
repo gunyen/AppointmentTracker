@@ -1,9 +1,4 @@
-package com.nguyen.c195.helper;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/29/2023
-Creation Time: 2:55 PM
-*/
+package com.nguyen.c195.helper;
 
 /**
  * Functional Interface for writing files

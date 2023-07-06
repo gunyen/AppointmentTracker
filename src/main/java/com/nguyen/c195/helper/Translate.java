@@ -1,9 +1,4 @@
-package com.nguyen.c195.helper;/*
-C195
-Created by: John Nguyen
-Creation Date: 6/7/2023
-Creation Time: 4:01 PM
-*/
+package com.nguyen.c195.helper;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

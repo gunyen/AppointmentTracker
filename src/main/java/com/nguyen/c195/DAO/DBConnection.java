@@ -1,9 +1,4 @@
-package com.nguyen.c195.DAO;/*
-C195
-Created by: John Nguyen
-Creation Date: 5/8/2023
-Creation Time: 6:16 PM
-*/
+package com.nguyen.c195.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

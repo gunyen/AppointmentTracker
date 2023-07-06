@@ -1,9 +1,4 @@
-package com.nguyen.c195.model;/*
-C195
-Created by: John Nguyen
-Creation Date: 5/27/2023
-Creation Time: 4:45 PM
-*/
+package com.nguyen.c195.model;
 
 /**
  * Models the creation of User objects

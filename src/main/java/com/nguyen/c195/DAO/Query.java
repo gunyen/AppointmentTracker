@@ -1,9 +1,4 @@
-package com.nguyen.c195.DAO;/*
-C195
-Created by: John Nguyen
-Creation Date: 5/27/2023
-Creation Time: 4:04 PM
-*/
+package com.nguyen.c195.DAO;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
