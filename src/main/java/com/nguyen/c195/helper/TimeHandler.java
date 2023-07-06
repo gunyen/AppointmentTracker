@@ -6,6 +6,7 @@ Creation Time: 5:42 PM
 */
 
 import com.nguyen.c195.DAO.DBConnection;
+import com.nguyen.c195.controller.CustomersController;
 import com.nguyen.c195.model.Appointment;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -42,7 +43,7 @@ public abstract class TimeHandler {
      * <p>Returns a boolean value based on whether the set startTime and/or set endTime is out of bounds of designated time window</p>
      *
      * @param startTime the startTime to set
-     * @param endTime the endTime to set
+     * @param endTime   the endTime to set
      * @return boolean value
      */
     public static boolean verifyBusinessHours(Timestamp startTime, Timestamp endTime) {
@@ -66,7 +67,7 @@ public abstract class TimeHandler {
      * <p>Returns a boolean value based on set startTime and/or endTime if an appointment object already occupies a designate time window</p>
      *
      * @param startTime the startTime to set
-     * @param endTime the endTime to set
+     * @param endTime   the endTime to set
      * @return
      * @throws SQLException
      */
@@ -78,18 +79,35 @@ public abstract class TimeHandler {
         while (rs.next()) {
             Timestamp start = rs.getTimestamp("Start");
             Timestamp end = rs.getTimestamp("End");
+
             if (startTime.after(start) && startTime.before(end)) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Appointment Overlap");
-                alert.setContentText("You have another appointment during this time. Another appointment can't start in the middle of it.");
-                alert.showAndWait();
-                return false;
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Appointment Overlap");
+                    alert.setContentText("You have another appointment during this time.\nNew appointments can't start at the same time or\nin the middle of an existing appointment.");
+                    alert.showAndWait();
+                    return false;
             } else if (endTime.after(start) && endTime.before(end)) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Appointment Overlap");
-                alert.setContentText("You have another appointment during this time. Appointments cannot in the middle of another appointment.");
-                alert.showAndWait();
-                return false;
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Appointment Overlap");
+                    alert.setContentText("You have another appointment during this time.\nNew appointments can't end at the same time or\nin the middle of an existing appointment.");
+                    alert.showAndWait();
+                    return false;
+            } else if (startTime.before(start) && endTime.after(end)) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Appointment Overlap");
+                    alert.setContentText("You have another appointment during this time.\nNew appointments can't have an existing\nappointment within selected window of time.");
+                    alert.showAndWait();
+                    return false;
+            } else if(startTime.equals(start) || endTime.equals(end)) {
+                if(CustomersController.createApp) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Appointment Overlap");
+                    alert.setContentText("You have another appointment during this time.\nNew appointments can't start and end at the same time\nas an existing appointment.");
+                    alert.showAndWait();
+                    return false;
+                } else {
+                    return true;
+                }
             }
         }
         return true;
@@ -98,7 +116,7 @@ public abstract class TimeHandler {
     /**
      * <p>Returns boolean value depending on an Appointment object if the object's start time is within a 15 minute time window from users machine current time</p>
      * <p>
-     *     The return value of true alerts the user that there is an Appointment object within the 15 minute time window. The return value of false alerts that there isn't an Appointment object within the 15 minutre time window.
+     * The return value of true alerts the user that there is an Appointment object within the 15 minute time window. The return value of false alerts that there isn't an Appointment object within the 15 minutre time window.
      * </p>
      *
      * @param allAppointments the allAppointments to set
@@ -110,9 +128,13 @@ public abstract class TimeHandler {
             LocalTime current = LocalTime.now();
             long gap = ChronoUnit.MINUTES.between(current, start);
             if (gap <= 15 && start.isAfter(LocalTime.now())) {
+                int appId = allAppointments.get(i).getAppointmentId();
+                LocalDate date = allAppointments.get(i).getStartDateTime().toLocalDateTime().toLocalDate();
+                LocalTime starttime = allAppointments.get(i).getStartDateTime().toLocalDateTime().toLocalTime();
+                LocalTime endtime = allAppointments.get(i).getEndDateTime().toLocalDateTime().toLocalTime();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Upcoming Appointment");
-                alert.setContentText("You have an appointment in " + gap + " minute(s)");
+                alert.setContentText("You have an appointment in " + gap + " minute(s)\n" + "Appointment ID: " + appId + "\nDate:  " + date + "\nTime: " + starttime + " - " + endtime);
                 alert.showAndWait();
                 return true;
             }

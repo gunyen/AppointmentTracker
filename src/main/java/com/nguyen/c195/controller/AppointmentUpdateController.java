@@ -90,7 +90,14 @@ public class AppointmentUpdateController implements Initializable {
                 alert.setContentText("Appointment can't start at the same time or after the end time.");
                 alert.showAndWait();
                 DBConnection.closeConnection();
-            } else if (appTitleField.getText().isEmpty() || appDescriptionField.getText().isEmpty() || appLocationField.getText().isEmpty() || appTypeField.getText().isEmpty() || appContactComboBox.getValue() == null || appDatePicker.getValue() == null || appStartCombo.getSelectionModel().getSelectedItem() == null || appEndCombo.getSelectionModel().getSelectedItem() == null) {
+            } else if(endDateTime.before(startDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Invalid Start Time");
+                alert.setContentText("Appointment can't have an end time before the start time.");
+                alert.showAndWait();
+                DBConnection.closeConnection();
+            }
+            else if (appTitleField.getText().isEmpty() || appDescriptionField.getText().isEmpty() || appLocationField.getText().isEmpty() || appTypeField.getText().isEmpty() || appContactComboBox.getValue() == null || appDatePicker.getValue() == null || appStartCombo.getSelectionModel().getSelectedItem() == null || appEndCombo.getSelectionModel().getSelectedItem() == null) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Empty Field");
                 alert.setContentText("Form must be completely filled before submission");
@@ -100,7 +107,7 @@ public class AppointmentUpdateController implements Initializable {
                 if (!TimeHandler.verifyBusinessHours(startDateTime, endDateTime)) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Invalid Day/Time");
-                    alert.setContentText("You can't make an appointment outside of office hours");
+                    alert.setContentText("You can't make an appointment outside of office hours.");
                     alert.showAndWait();
                     DBConnection.closeConnection();
                 } else {
@@ -108,14 +115,26 @@ public class AppointmentUpdateController implements Initializable {
                         if (TimeHandler.appointmentOverlapCheck(startDateTime, endDateTime)) {
                             AppointmentDaoImpl.insertAppointment(appTitleField.getText(), appDescriptionField.getText(), appLocationField.getText(), appTypeField.getText(), startDateTime, endDateTime, customerData.getCustomerId(), VerifyUser.loginID, appContactComboBox.getValue().getContactId());
                             DBConnection.closeConnection();
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("New Appointment");
+                            alert.setContentText("New appointment has been added.");
+                            alert.showAndWait();
                             Scheduler.navigate(actionEvent, "Appointments.fxml");
                         } else {
                             DBConnection.closeConnection();
                         }
                     } else {
-                        AppointmentDaoImpl.updateAppointment(AppointmentsController.appointmentData.getAppointmentId(), appTitleField.getText(), appDescriptionField.getText(), appLocationField.getText(), appTypeField.getText(), startDateTime, endDateTime, appointmentData.getCustomerId(), VerifyUser.loginID, appContactComboBox.getValue().getContactId());
-                        DBConnection.closeConnection();
-                        Scheduler.navigate(actionEvent, "Appointments.fxml");
+                        if (TimeHandler.appointmentOverlapCheck(startDateTime, endDateTime)) {
+                            AppointmentDaoImpl.updateAppointment(AppointmentsController.appointmentData.getAppointmentId(), appTitleField.getText(), appDescriptionField.getText(), appLocationField.getText(), appTypeField.getText(), startDateTime, endDateTime, appointmentData.getCustomerId(), VerifyUser.loginID, appContactComboBox.getValue().getContactId());
+                            DBConnection.closeConnection();
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Update Appointment");
+                            alert.setContentText("Appointment information has been updated.");
+                            alert.showAndWait();
+                            Scheduler.navigate(actionEvent, "Appointments.fxml");
+                        } else {
+                            DBConnection.closeConnection();
+                        }
                     }
                 }
             }
@@ -124,6 +143,7 @@ public class AppointmentUpdateController implements Initializable {
             alert.setTitle("Empty Field");
             alert.setContentText("Form must be completely filled before submission");
             alert.showAndWait();
+            e.printStackTrace();
             DBConnection.closeConnection();
         }
     }

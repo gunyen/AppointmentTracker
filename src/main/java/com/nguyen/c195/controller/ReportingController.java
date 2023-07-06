@@ -59,6 +59,7 @@ public class ReportingController implements Initializable {
         try {
             firstTab();
             contactComboBox.setItems(ContactDAOImpl.getAllContacts());
+            contactSchedTable.setPlaceholder(new Label("Select a contact to view their schedule"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

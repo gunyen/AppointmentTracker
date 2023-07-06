@@ -68,7 +68,6 @@ public abstract class AppointmentDaoImpl {
      * @throws SQLException
      */
     public static void updateAppointment(int appointmentId, String title, String description, String location, String type, Timestamp startDateTime, Timestamp endDateTime, int customerId, int userId, int contactId) throws SQLException {
-        DBConnection.openConnection();
         try {
             String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Contact_ID = ?, Customer_ID = ?, User_ID = ? WHERE Appointment_ID = ?";
             PreparedStatement ps = DBConnection.connection.prepareStatement(sql);
@@ -86,7 +85,6 @@ public abstract class AppointmentDaoImpl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        DBConnection.closeConnection();
     }
 
     /**

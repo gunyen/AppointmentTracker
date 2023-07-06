@@ -92,7 +92,7 @@ public class CustomerUpdateController implements Initializable {
     public void custButt(ActionEvent actionEvent) throws SQLException, IOException {
         try {
             DBConnection.openConnection();
-            if (custNameField.getText().isEmpty() || custAddressField.getText().isEmpty() || custPostalField.getText().isEmpty() || custPhoneField.getText().isEmpty() || divisionComboBox.getValue() == null || countryComboBox.getValue() == null) {
+            if (custNameField.getText().isEmpty() || custAddressField.getText().isEmpty() || custPostalField.getText().isEmpty() || custPhoneField.getText().isEmpty() || divisionComboBox.getSelectionModel().getSelectedItem() == null || countryComboBox.getSelectionModel().getSelectedItem() == null) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Empty Field");
                 alert.setContentText("Form must be completely filled before submission");
@@ -102,10 +102,18 @@ public class CustomerUpdateController implements Initializable {
                 if (createCust) {
                     CustomerDaoImpl.insertCustomer(custNameField.getText(), custAddressField.getText(), custPostalField.getText(), custPhoneField.getText(), divisionComboBox.getValue().getDivisionId());
                     DBConnection.closeConnection();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("New Customer");
+                    alert.setContentText("New customer has been added.");
+                    alert.showAndWait();
                     Scheduler.navigate(actionEvent, "Customers.fxml");
                 } else {
                     CustomerDaoImpl.updateCustomer(custNameField.getText(), custAddressField.getText(), custPostalField.getText(), custPhoneField.getText(), divisionComboBox.getValue().getDivisionId(), customerData.getCustomerId());
                     DBConnection.closeConnection();
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Update Customer");
+                    alert.setContentText("Customer information has been updated.");
+                    alert.showAndWait();
                     Scheduler.navigate(actionEvent, "Customers.fxml");
                 }
             }
@@ -114,6 +122,7 @@ public class CustomerUpdateController implements Initializable {
             alert.setTitle("Empty Field");
             alert.setContentText("Form must be completely filled before submission");
             alert.showAndWait();
+            e.printStackTrace();
             DBConnection.closeConnection();
         }
 

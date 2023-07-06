@@ -157,7 +157,7 @@ public class AppointmentsController implements Initializable {
             alert.setContentText("Must select an appointment to delete.");
             alert.showAndWait();
         } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Appointment Deletion");
             alert.setContentText("Are you sure you want to delete this appointment?");
             Optional<ButtonType> result = alert.showAndWait();
@@ -202,7 +202,7 @@ public class AppointmentsController implements Initializable {
      */
     public Appointment getAppointmentData(Appointment appointment) {
         appointmentData = appointment;
-        return appointment;
+        return appointmentData;
     }
 
     /**

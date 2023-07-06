@@ -50,6 +50,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DBConnection.openConnection();
+        DBConnection.closeConnection();
         Locale.setDefault(ENGLISH);
         userZone.setText(ZoneId.systemDefault().toString());
     }
@@ -86,13 +88,11 @@ public class LoginController implements Initializable {
                 System.out.println("Login attempt recorded.");
             };
             if (VerifyUser.getUserPassword(userNameText.getText(), passwordText.getText())) {
-
                 TimeHandler.meetingAlert(AppointmentDaoImpl.getAllAppointments("week"));
                 input.inputReport(userNameText.getText(), "true");
                 DBConnection.closeConnection();
                 Scheduler.navigate(actionEvent, "Appointments.fxml");
             } else {
-
                 input.inputReport(userNameText.getText(), "false");
                 ResourceBundle rb = ResourceBundle.getBundle("Nat", Locale.getDefault());
                 verifyLabel.setText(rb.getString("LoginError"));

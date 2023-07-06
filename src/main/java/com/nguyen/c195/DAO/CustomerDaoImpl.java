@@ -51,7 +51,7 @@ public abstract class CustomerDaoImpl {
      * @throws SQLException
      */
     public static void updateCustomer(String customerName, String address, String postalCode, String phone, int divisionId, int customerId) throws SQLException {
-        String sql = "UPDATE customers SET (Customer_Name=?, Address=?, Postal_Code=?, Phone=?, Division_ID=?) WHERE Customer_ID=?";
+        String sql = "UPDATE customers SET Customer_Name=?, Address=?, Postal_Code=?, Phone=?, Division_ID=? WHERE Customer_ID=?";
         PreparedStatement ps = DBConnection.connection.prepareStatement(sql);
         ps.setString(1, customerName);
         ps.setString(2, address);
