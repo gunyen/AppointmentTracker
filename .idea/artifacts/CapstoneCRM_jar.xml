@@ -1,10 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="C195:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/C195_jar</output-path>
-    <root id="archive" name="C195.jar">
+  <artifact type="jar" name="CapstoneCRM:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CapstoneCRM_jar</output-path>
+    <root id="archive" name="CapstoneCRM.jar">
       <element id="module-output" name="C195" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19.0.2.1/javafx-base-19.0.2.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../../Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.33.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19.0.2.1/javafx-graphics-19.0.2.1.jar" path-in-jar="/" />
@@ -12,7 +11,6 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19.0.2.1/javafx-controls-19.0.2.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/19.0.2.1/javafx-fxml-19.0.2.1-win.jar" path-in-jar="/" />
-      <element id="library" level="project" name="bin" />
     </root>
   </artifact>
 </component>

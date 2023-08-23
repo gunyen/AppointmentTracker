@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="416.0" prefWidth="949.0" style="-fx-border-color: #000;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nguyen.capstonecrm.controller.AppointmentsController">
+    <children>
+        <VBox layoutX="21.0" layoutY="121.0" prefHeight="200.0" prefWidth="907.0">
+            <children>
+                <TableView fx:id="AppointmentTable" focusTraversable="false" prefHeight="200.0" prefWidth="910.0" styleClass="styles.css">
+                    <columns>
+                        <TableColumn fx:id="AppID" prefWidth="51.20000076293945" resizable="false" text="AppID" />
+                        <TableColumn fx:id="Title" prefWidth="82.5999984741211" resizable="false" text="Title" />
+                        <TableColumn fx:id="Description" prefWidth="104.19998168945312" resizable="false" text="Description" />
+                        <TableColumn fx:id="Location" prefWidth="89.80001831054688" resizable="false" text="Location" />
+                        <TableColumn fx:id="Contact" prefWidth="90.79998779296875" resizable="false" text="Contact" />
+                        <TableColumn fx:id="Type" prefWidth="107.60006713867188" resizable="false" text="Type" />
+                        <TableColumn fx:id="Start" prefWidth="128.4000244140625" resizable="false" text="Start" />
+                        <TableColumn fx:id="End" prefWidth="126.0" resizable="false" text="End" />
+                        <TableColumn fx:id="CustomerID" prefWidth="74.39996337890625" resizable="false" text="CustomerID" />
+                        <TableColumn fx:id="UserID" prefWidth="47.199938964843795" resizable="false" text="UserID" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+        <HBox alignment="CENTER" layoutX="259.0" layoutY="21.0" prefHeight="80.0" prefWidth="430.0">
+            <children>
+                <Label text="Appointments">
+                    <font>
+                        <Font name="Franklin Gothic Heavy" size="60.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="21.0" layoutY="344.0" prefHeight="47.0" prefWidth="324.0" spacing="15.0">
+            <children>
+                <Label text="Appointments this: " />
+                <RadioButton fx:id="appSortWeekRad" focusTraversable="false" mnemonicParsing="false" onAction="#appSortWeekRad" selected="true" text="Week" toggleGroup="$dateFilter">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="dateFilter" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="appSortMonthRad" focusTraversable="false" mnemonicParsing="false" onAction="#appSortMonthRad" text="Month" toggleGroup="$dateFilter" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="457.0" layoutY="344.0" prefHeight="47.0" prefWidth="470.0" spacing="15.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#reportsButton" text="Reports" />
+                <Button mnemonicParsing="false" onAction="#appEditButt" text="Edit" />
+                <Button mnemonicParsing="false" onAction="#appDeleteButt" text="Delete" />
+                <Button mnemonicParsing="false" onAction="#customerButton" text="Customers" />
+                <Button mnemonicParsing="false" onAction="#logoutButt" text="Log Out" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

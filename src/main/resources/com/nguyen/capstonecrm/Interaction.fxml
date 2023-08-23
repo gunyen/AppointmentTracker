@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="395.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nguyen.capstonecrm.controller.InteractionController">
+    <children>
+        <VBox layoutX="26.0" layoutY="13.0" prefHeight="364.0" prefWidth="260.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="84.0" prefWidth="342.0">
+                    <children>
+                  <HBox alignment="CENTER" prefHeight="84.0" prefWidth="226.0" spacing="15.0">
+                     <children>
+                              <Label fx:id="interactionLabel" text="Interaction">
+                                  <font>
+                                      <Font name="Franklin Gothic Heavy" size="30.0" />
+                                  </font>
+                              </Label>
+                     </children>
+                  </HBox>
+                    </children>
+                </VBox>
+                <GridPane fx:id="infoFormGraph" alignment="TOP_CENTER" prefHeight="202.0" prefWidth="258.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="166.199951171875" minWidth="10.0" prefWidth="67.19996337890625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.00001983642585" minWidth="10.0" prefWidth="193.60003662109375" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Type: " />
+                        <Label text="Description: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label text="Date: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label fx:id="infoStatusLabel" text="Status: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <TextField fx:id="custinfoTypeField" GridPane.columnIndex="1" />
+                  <TextArea fx:id="custinfoDescField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="custinfoDateField" prefHeight="26.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <RadioButton fx:id="logOpenRad" mnemonicParsing="false" selected="true" text="Open">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="statusRadGroup" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="logClosedRad" mnemonicParsing="false" text="Closed" toggleGroup="$statusRadGroup" />
+                     </children>
+                  </HBox>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </GridPane>
+                <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="342.0" spacing="10.0">
+                    <children>
+                        <Button fx:id="custinfoSubmitButt" mnemonicParsing="false" onAction="#custinfoSubmitButt" text="Button" />
+                        <Button mnemonicParsing="false" onAction="#custinfoCancelButt" text="Cancel" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

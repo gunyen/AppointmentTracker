@@ -4,12 +4,12 @@ module com.nguyen.c195 {
     requires java.sql;
 
 
-    opens com.nguyen.c195 to javafx.fxml;
-    exports com.nguyen.c195;
-    exports com.nguyen.c195.controller;
-    opens com.nguyen.c195.controller to javafx.fxml;
-    exports com.nguyen.c195.model;
-    opens com.nguyen.c195.model to javafx.fxml;
-    opens com.nguyen.c195.DAO to javafx.fxml;
-    exports com.nguyen.c195.DAO;
+    opens com.nguyen.capstonecrm to javafx.fxml;
+    exports com.nguyen.capstonecrm;
+    exports com.nguyen.capstonecrm.controller;
+    opens com.nguyen.capstonecrm.controller to javafx.fxml;
+    exports com.nguyen.capstonecrm.model;
+    opens com.nguyen.capstonecrm.model to javafx.fxml;
+    opens com.nguyen.capstonecrm.DAO to javafx.fxml;
+    exports com.nguyen.capstonecrm.DAO;
 }
