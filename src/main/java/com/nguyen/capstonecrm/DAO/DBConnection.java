@@ -14,8 +14,8 @@ public abstract class DBConnection {
     private static final String databaseName = "test";
     private static final String jdbcUrl = protocol + vendor + location + databaseName + "?connectionTimeZone = SERVER";
     private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String userName = "mywgu";
-    private static final String password = "mywgu";
+    private static final String userName = "testing";
+    private static final String password = "testing";
 
     public static Connection connection;
 
