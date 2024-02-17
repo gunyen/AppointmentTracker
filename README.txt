@@ -1,7 +1,6 @@
 Author:
 Name - John Nguyen
 Email - jngu102@wgu.edu
-Phone - (425) 770 - 9705
 
 Title: CapstoneCRM
 Purpose: A scheduling desktop application for keeping track of appointments with customer as well as customer interactions
